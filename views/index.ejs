@@ -1,61 +1,105 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>LoginApp</title>
-	<!-- <link rel="stylesheet" href="/css/bootstrap.css"/>
-	<link rel="stylesheet" href="/css/style.css"/> -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-</head>
+<title>Accueil</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+  <link rel="stylesheet" href="dist/css/bootstrap-select.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+<style>
+        body, html {
+            height: 100%;
+        }
+        .bgimg {
+           background-position: center;
+            background-size: cover;
+            background-image: url("http://cdn2.hubspot.net/hubfs/53/To_Do_List.png");
+            min-height: 75%;
+            font-family: "Inconsolata", sans-serif;
+        }
+        .menu {
+            display: none;
+        }
+</style>
 
 <body>
-	 <div class="container">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <% if(user){ %>
-	            <li role="presentation"><a href="/">Dashboard</a></li>
-	            <li role="presentation"><a href="/users/logout">Logout</a></li>            
-            <% } else { %>
-	            <li role="presentation"><a href="/users/login">Login</a></li>
-	            <li role="presentation"><a href="/users/register">Register</a></li>
-            <% } %>
-          </ul>
-        </nav>
-        <h3 class="text-muted">Login App</h3>
-      </div>
 
-      
+<!-- Links Navbar menue -->
+<div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+  <% if(user){ %>
+    <div class="w3-col s3">
+      <a href="/" class="w3-button w3-block w3-black">ACCUEIL</a>
+    </div>
+    <div class="w3-col s6">
+      <a href="/to-do-list" class="w3-button w3-block w3-black">MA TO DO LIST</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="/users/logout" class="w3-button w3-block w3-black glyphicon glyphicon-off"></a>
+    </div>
+  <% } else { %>
+    <div class="w3-col s6">
+      <a href="/users/login" class="w3-button w3-block w3-black">CONNEXION</a>
+    </div>
+    <div class="w3-col s6">
+      <a href="/users/register" class="w3-button w3-block w3-black">S'ENREGISTRER</a>
+    </div>
+    <% } %>
+  </div>
+</div>
 
-      <div class="row">
-        <div class="col-lg-12">
-        	<% if(success_msg) { %>
-        		<div class="alert alert-success"><%= success_msg %></div>
-        	<% } %>
+<div class="row">
+  <div class="col-lg-12">
+    <% if(success_msg == true) { %>
+      <div class="alert alert-success"><%= success_msg %></div>
+    <% } %>
+              
+    <% if(error_msg == true) { %>
+      <div class="alert alert-danger"><%= error_msg %></div>
+    <% } %>
 
-        	<% if(error_msg) { %>
-        		<div class="alert alert-danger"><%= error_msg %></div>
-        	<% } %>
+    <% if(error == true) { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+  </div>
+</div>
 
-        	<% if(error) { %>
-        		<div class="alert alert-danger"><%= error %></div>
-        	<% } %>
 
-        	<h2 class="page-header">Dashboard</h2>
-			
-			<p>Welcome to your dashboard</p>
-        	
-        </div>
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
+    <span class="w3-tag">Open Everyday</span>
+  </div>
+  <div class="w3-display-middle w3-center">
+    <span class="w3-text-white" style="font-size:90px">GET YOUR <br>LIST</span>
+  </div>
+  
+  <div class="w3-display-bottomright w3-center w3-padding-large">
+    <span class="w3-text-white">TodoList your life</span>
+  </div>
+</header>
 
-        
-      </div>
+<!-- Add a background color and large text to the whole page ! Yinw --> 
+<div class="w3-sand w3-grayscale w3-large">
 
-      <footer class="footer">
-        <p>&copy; LoginApp 2017</p>
-      </footer>
+<!-- button to  my to do list -->
+<div class="w3-container" id="getlist">
+  <div class="w3-content" style="max-width:700px">
+   <a href="/to-do-list"><h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide"><button class="w3-button w3-black">GET LIST</span></h5></button></a>
+    
 
-    </div> <!-- /container -->
+  </div>
+</div>
 </body>
+
+
 </html>

@@ -29,14 +29,16 @@ app.use(cookieParser());
 
 //Setting Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use('/assets', express.static('public'));
 
 //Express Session
 app.use(session({
 	secret: 'secret',
 	saveUninitialized: true,
-	resave: true
+	resave: true,
+    cookie: { secure: false }
 }));
+
+app.use(require('./middlewares/flash'));
 
 //Passport Initialization
 app.use(passport.initialize());
