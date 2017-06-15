@@ -1,13 +1,19 @@
 var express = require('express');
+var moment = require('moment');
 var router = express.Router();
+
+
+var Article = require('../models/article');
 
 //Get Homepage
 router.get('/', ensureAuthenticated, function(req, res){
 	res.render('index');
+    Article.findByArticle();
 });
 
 function ensureAuthenticated(req, res, next){
 	if(req.isAuthenticated()){
+        console.log(req.user);
 		return next();
 	} else {
 		//req.flash('error_msg','You are not logged in');
@@ -15,36 +21,44 @@ function ensureAuthenticated(req, res, next){
 	}
 }
 
-router.get('/to-do-list', (request, response) => {
-    let Task = require('../models/task')
-    Task.all(function(tasks){
-        response.render('to-do-list', {tasks: tasks}) 
-    })
-})
+router.get('/article-add', function(req, res) {
+    res.render('article-add');
+});
 
-//Task management
-router.post('/to-do-list', (request, response) => {
-    if(request.body.task === undefined || request.body.task === '') {
-        request.flash('error', "Vous n'avez pas entré de tâche")
-        response.redirect('/to-do-list')
+router.post('/article-add', function(req, res) {
+    var title = req.body.title;
+    var content = req.body.content;
+    var owner_id = req.user.id;
+    var date = Date.now();
+
+
+    //Validation
+    req.checkBody('title', 'Votre article doit avoir un titre').notEmpty();
+    req.checkBody('content', 'Votre article doit avoir un contenu').notEmpty();
+
+    var errors = req.validationErrors();
+
+    if(errors){
+        res.render('article-add', {
+            errors:errors
+        });
     } else {
-        let Task = require('../models/task')
-        Task.create(request.body.task, function(){
-            request.flash('success', "Merci !")
-            response.redirect('/to-do-list')
-        })
-    }
-})
+        var newArticle = new Article({
+            title: title,
+            content: content,
+            owner_id: owner_id,
+            date: date
+        });
 
-router.get('/to-do-list/delete/:id', (request, response) => {
-    if(request.params.id != '' && request.params.id != undefined) {
-        let Task = require('../models/task')
-        Task.delete(request.params.id, function(){
-            response.redirect('/to-do-list')
-        })
+        Article.createArticle(newArticle, function(err,article){
+            if(err) throw err
+        });
+
+        req.flash('success_msg', 'Votre article a été enregistré');
+
+        res.redirect('/');
     }
-    
-})
+});
 
 
 module.exports = router;

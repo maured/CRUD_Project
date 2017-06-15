@@ -1,5 +1,5 @@
 {
-  "name": "testtodolist",
+  "name": "CRUD_Project",
   "version": "1.0.0",
   "description": "Application d'authetification utilisateur",
   "main": "app.js",
@@ -25,7 +25,6 @@
     "passport-http": "*",
     "passport-local": "*",
     "moment": "^2.18.1",
-    "mysql": "^2.13.0",
     "nodemon": "^1.10.0"
   }
 }

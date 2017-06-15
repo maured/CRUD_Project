@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+  <link rel="stylesheet" href="dist/css/bootstrap-select.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+<head>
+    <title>Ajouter un article </title>
+</head>
+
+<body>
+
+<div class="w3-top">
+    <div class="w3-row w3-padding w3-black">
+        <% if(user){ %>
+        <div class="w3-col s3">
+            <a href="/" class="w3-button w3-block w3-black">ACCUEIL</a>
+        </div>
+        <div class="w3-col s6">
+            <a href="/article-add" class="w3-button w3-block w3-black">AJOUTER UN ARTICLE</a>
+        </div>
+        <div class="w3-col s3">
+            <a href="/users/logout" class="w3-button w3-block w3-black glyphicon glyphicon-off"></a>
+        </div>
+        <% } else { %>
+        <div class="w3-col s6">
+            <a href="/users/login" class="w3-button w3-block w3-black">CONNEXION</a>
+        </div>
+        <div class="w3-col s6">
+            <a href="/users/register" class="w3-button w3-block w3-black">S'ENREGISTRER</a>
+        </div>
+        <% } %>
+    </div>
+</div>
+
+<div class="container" id="contact-form">
+    <div class="col-md-12">
+        <div class="form-area">
+            <form role="form" id="field-form" method="post">
+                <br style="clear:both">
+                <h3 style="margin-bottom: 25px; text-align: center;">Ajout d'un article:</h3>
+                <div class="form-group">
+                    <input type="text" class="form-control"  name="title" placeholder="Title" required>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" type="textarea" id="contents" name="content" placeholder="Votre contenu" maxlength="3000" rows="7"></textarea>
+                    <span class="help-block"><p id="characterLeft" class="help-block ">Vous avez atteint la limite</p></span>
+                </div>
+
+                <a href="/" id="submit" class="btn btn-primary pull-left">Retour</a>
+                <button type="submit"  class="btn btn-primary pull-right">Publier</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#characterLeft').text('3000 characters left');
+        $('#message').keydown(function () {
+            var max = 3000;
+            var len = $(this).val().length;
+            if (len >= max) {
+                $('#characterLeft').text('You have reached the limit');
+                $('#characterLeft').addClass('red');
+                $('#btnSubmit').addClass('disabled');
+            }
+            else {
+                var ch = max - len;
+                $('#characterLeft').text(ch + ' characters left');
+                $('#btnSubmit').removeClass('disabled');
+                $('#characterLeft').removeClass('red');
+            }
+        });
+    });
+</script>
+</html>

@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-var User = require('../models/log_register');
+var User = require('../models/user');
 
 //Get register
 router.get('/register', function(req, res) {
@@ -59,7 +59,7 @@ router.post('/register', function(req, res) {
 	}
 });
 
-passport.use(new LocalStrategy(
+passport.use('local', new LocalStrategy(
   function(username, password, done) {
     User.getUserByUsername(username, function(err, user){
     	if(err) throw err;
