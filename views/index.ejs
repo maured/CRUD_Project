@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<title>Accueil</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+  <link rel="stylesheet" href="dist/css/bootstrap-select.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+<style>
+        body, html {
+            height: 100%;
+        }
+        .bgimg {
+           background-position: center;
+            background-size: cover;
+            background-image: url("http://cdn2.hubspot.net/hubfs/53/To_Do_List.png");
+            min-height: 75%;
+            font-family: "Inconsolata", sans-serif;
+        }
+        .menu {
+            display: none;
+        }
+</style>
+
+<body>
+
+<!-- Links Navbar menue -->
+<div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+  <% if(user){ %>
+    <div class="w3-col s3">
+      <a href="/" class="w3-button w3-block w3-black">ACCUEIL</a>
+    </div>
+    <div class="w3-col s6">
+      <a href="/article-add" class="w3-button w3-block w3-black">AJOUTER UN ARTICLE</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="/users/logout" class="w3-button w3-block w3-black glyphicon glyphicon-off"></a>
+    </div>
+  <% } else { %>
+    <div class="w3-col s6">
+      <a href="/users/login" class="w3-button w3-block w3-black">CONNEXION</a>
+    </div>
+    <div class="w3-col s6">
+      <a href="/users/register" class="w3-button w3-block w3-black">S'ENREGISTRER</a>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <% if(success_msg == true) { %>
+      <div class="alert alert-success"><%= success_msg %></div>
+    <% } %>
+              
+    <% if(error_msg == true) { %>
+      <div class="alert alert-danger"><%= error_msg %></div>
+    <% } %>
+
+    <% if(error == true) { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+  </div>
+</div>
+
+<!-- Page Content -->
+    <div class="container">
+        <div class="row">
+          <!-- Blog Sidebar Widgets Column -->
+          <div class="col-md-4">
+            <!-- Blog Search Well -->
+            <div class="well">
+                <h4>Blog Search</h4>
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    </span>
+                </div>
+                <!-- /.input-group -->
+            </div>
+              <!-- Side Widget Well -->
+              <div class="well">
+                  <h4>Side Widget Well</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+              </div>
+          </div>
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+
+                <h1 class="page-header">
+                    Page Heading
+                    <small>Secondary Text</small>
+                </h1>
+
+                <!-- First Blog Post -->
+                <h2>
+                    <a href="#">Blog Post Title</a>
+                </h2>
+                <p class="lead">
+                    by <a href="index.php">Start Bootstrap</a>
+                </p>
+                <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
+                <hr>
+                <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                <hr>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
+                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+                <!-- Pager -->
+                <ul class="pager">
+                    <li class="previous">
+                        <a href="#">&larr; Older</a>
+                    </li>
+                    <li class="next">
+                        <a href="#">Newer &rarr;</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+
+
+</body>
+
+
+</html>
