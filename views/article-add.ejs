@@ -42,29 +42,52 @@
         <% } %>
     </div>
 </div>
-
-<div class="container" id="contact-form">
-    <div class="col-md-12">
-        <div class="form-area">
-            <form role="form" id="field-form" method="post">
-                <br style="clear:both">
-                <h3 style="margin-bottom: 25px; text-align: center;">Ajout d'un article:</h3>
-                <div class="form-group">
-                    <input type="text" class="form-control"  name="title" placeholder="Title" required>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" type="textarea" id="contents" name="content" placeholder="Votre contenu" maxlength="3000" rows="7"></textarea>
-                    <span class="help-block"><p id="characterLeft" class="help-block ">Vous avez atteint la limite</p></span>
-                </div>
-
-                <a href="/" id="submit" class="btn btn-primary pull-left">Retour</a>
-                <button type="submit"  class="btn btn-primary pull-right">Publier</button>
-            </form>
+    <!-- CKEDITOR VIEW -->
+    <div id="editor-render" style="border:solid black 1px"></div>
+    <!-- CKEDITOR FORM -->
+    <form role="form" id="field-form" method="post">
+        <br style="clear:both">
+        <h3 style="margin-bottom: 25px; text-align: center;">Ajout d'un article:</h3>
+        <div class="form-group">
+            <input type="text" class="form-control"  name="title" placeholder="Titre" required>
         </div>
-    </div>
-</div>
+        <div class="form-group">
+          <textarea class="form-control" type="textarea" name="content" id="contents"  placeholder="Votre contenu" maxlength="3000" rows="7"></textarea>
+          <span class="help-block"><p id="characterLeft" class="help-block ">Vous avez atteint la limite</p></span>
+      </div>
+      <a href="/" id="submit" class="btn btn-primary pull-left">Retour</a>
+      <button type="submit"  class="btn btn-primary pull-right">Publier</button>
+    </form>
+    <!-- CKEDITOR STATUS -->
+    <div id="editor-status"></div>
+
+
+    <!-- SCRIPTS -->
+    <script src="ckeditor/ckeditor.js">
+    // CKEDITOR
+    </script>
 </body>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript">
+
+        // Instanciation de l'éditeur
+        var editor = CKEDITOR.replace('contents', {
+            language: 'fr',
+
+        });
+
+        // OnChange listener
+        editor.on('change', (e) => {
+            //geData() retourne le contenu html de ckeditor
+            let editorStatusEl = document.getElementById('editor-status');
+            console.log('Total bytes: ' + e.editor.getData().lenght);
+            editorStatusEl.innerHTML = 'Total bytes: ' + e.editor.getData().length;
+
+            let editorRenderEl = document.getElementById('editor-render');
+            editorRenderEl.innerHTML = e.editor.getData();
+        })
+
+    </script>
 <script>
     $(document).ready(function(){
         $('#characterLeft').text('3000 characters left');

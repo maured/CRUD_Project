@@ -1,14 +1,13 @@
 var express = require('express');
 var moment = require('moment');
+var passport = require('passport');
 var router = express.Router();
-
-
 var Article = require('../models/article');
 
 //Get Homepage
 router.get('/', ensureAuthenticated, function(req, res){
 	res.render('index');
-    Article.findByArticle();
+	
 });
 
 function ensureAuthenticated(req, res, next){

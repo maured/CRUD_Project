@@ -20,7 +20,7 @@
             height: 100%;
         }
         .bgimg {
-           background-position: center;
+            background-position: center;
             background-size: cover;
             background-image: url("http://cdn2.hubspot.net/hubfs/53/To_Do_List.png");
             min-height: 75%;
@@ -29,10 +29,17 @@
         .menu {
             display: none;
         }
+        .article{
+          display:block;
+          text-align: center;
+          margin: 20px auto;
+        }
+        .pagers{
+          margin-left: 42%;
+        }
 </style>
 
 <body>
-
 <!-- Links Navbar menue -->
 <div class="w3-top">
   <div class="w3-row w3-padding w3-black">
@@ -62,7 +69,7 @@
     <% if(success_msg == true) { %>
       <div class="alert alert-success"><%= success_msg %></div>
     <% } %>
-              
+
     <% if(error_msg == true) { %>
       <div class="alert alert-danger"><%= error_msg %></div>
     <% } %>
@@ -74,63 +81,34 @@
 </div>
 
 <!-- Page Content -->
-    <div class="container">
-        <div class="row">
-          <!-- Blog Sidebar Widgets Column -->
-          <div class="col-md-4">
-            <!-- Blog Search Well -->
-            <div class="well">
-                <h4>Blog Search</h4>
-                <div class="input-group">
-                    <input type="text" class="form-control">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                    </span>
+    <div class="container" style="width: 100%;">
+        <div class="row" style="margin-top: 52px;margin-left: 25px;margin-right: 25px;">
+                <h1 class="page-header">Blog Xnov</h1>
+                <div class="article">
+                  <h2>First Blog Post</h2>
+                  <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
+                  <hr>
+                  <img class="img-responsive" src="http://placehold.it/900x300" alt="" style="display: initial;">
+                  <hr>
+                  <p>
+                    Lorem ipsum dolor sit amet,
+                    consectetur adipisicing elit. Dolore, veritatis, tempora,
+                    necessitatibus inventore nisi quam quia repellat ut tempore laborum
+                    possimus eum dicta id animi corrupti debitis ipsum officiis
+                    rerum.
+                  </p>
                 </div>
-                <!-- /.input-group -->
-            </div>
-              <!-- Side Widget Well -->
-              <div class="well">
-                  <h4>Side Widget Well</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
-              </div>
-          </div>
-            <!-- Blog Entries Column -->
-            <div class="col-md-8">
-
-                <h1 class="page-header">
-                    Page Heading
-                    <small>Secondary Text</small>
-                </h1>
-
-                <!-- First Blog Post -->
-                <h2>
-                    <a href="#">Blog Post Title</a>
-                </h2>
-                <p class="lead">
-                    by <a href="index.php">Start Bootstrap</a>
-                </p>
-                <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
-                <hr>
-                <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-                <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-
                 <!-- Pager -->
-                <ul class="pager">
-                    <li class="previous">
-                        <a href="#">&larr; Older</a>
-                    </li>
-                    <li class="next">
-                        <a href="#">Newer &rarr;</a>
-                    </li>
-                </ul>
-
-            </div>
-
+                <div class="pagers">
+                  <ul class="pager">
+                      <li class="previous">
+                          <a href="#" style="margin-right: 100px;">&larr; Older</a>
+                      </li>
+                      <li class="next">
+                          <a href="#">Newer &rarr;</a>
+                      </li>
+                  </ul>
+              </div>
         </div>
         <!-- /.row -->
 
@@ -140,7 +118,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; X-Nov 2017</p>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -148,9 +126,5 @@
         </footer>
 
     </div>
-
-
 </body>
-
-
 </html>
