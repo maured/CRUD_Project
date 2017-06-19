@@ -83,21 +83,23 @@
 <!-- Page Content -->
     <div class="container" style="width: 100%;">
         <div class="row" style="margin-top: 52px;margin-left: 25px;margin-right: 25px;">
-                <h1 class="page-header">Blog Xnov</h1>
-                <div class="article">
-                  <h2>First Blog Post</h2>
-                  <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
-                  <hr>
-                  <img class="img-responsive" src="http://placehold.it/900x300" alt="" style="display: initial;">
-                  <hr>
-                  <p>
-                    Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit. Dolore, veritatis, tempora,
-                    necessitatibus inventore nisi quam quia repellat ut tempore laborum
-                    possimus eum dicta id animi corrupti debitis ipsum officiis
-                    rerum.
-                  </p>
+                <div class="col-md-12">
+                  <h1 class="page-header">Blog Xnov</h1>
+                  <br>
                 </div>
+                  <% articles.forEach( function( article ) { %>
+                    <div class="article">
+                      <h2><%= article.title %></h2>
+                      <p><span class="glyphicon glyphicon-time"></span> Posted <%= article.date %> By <%= article.owner_id %></p>
+                      <hr>
+                      <img class="img-responsive" src="http://placehold.it/900x300" alt="" style="display: initial;">
+                      <hr>
+                      <p>
+                        <%= article.content %>
+                      </p>
+                    </div>
+                  <% }); %>
+
                 <!-- Pager -->
                 <div class="pagers">
                   <ul class="pager">

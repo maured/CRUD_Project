@@ -14,17 +14,18 @@
     "connect-flash": "*",
     "cookie-parser": "^1.4.1",
     "ejs": "^2.5.6",
+    "ejs-locals": "^1.0.2",
     "express": "*",
     "express-handlebars": "*",
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
+    "moment": "^2.18.1",
     "mongodb": "*",
     "mongoose": "*",
+    "nodemon": "^1.10.0",
     "passport": "*",
     "passport-http": "*",
-    "passport-local": "*",
-    "moment": "^2.18.1",
-    "nodemon": "^1.10.0"
+    "passport-local": "*"
   }
 }

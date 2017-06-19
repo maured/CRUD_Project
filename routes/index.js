@@ -6,8 +6,12 @@ var Article = require('../models/article');
 
 //Get Homepage
 router.get('/', ensureAuthenticated, function(req, res){
-	res.render('index');
-	
+	Article.find( (err, articles ) => {
+      console.log(articles);
+      res.render('index', {
+        articles : articles,
+      });
+		});
 });
 
 function ensureAuthenticated(req, res, next){

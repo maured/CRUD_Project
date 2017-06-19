@@ -9,6 +9,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local'), Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
+var ejs =require('ejs-locals');
 mongoose.connect('mongodb://localhost/loginapp');
 var db = mongoose.connection;
 
@@ -22,6 +23,7 @@ var app = express();
 //View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.engine('ejs',ejs);
 
 //BodyParser and CookieParser Middleware
 app.use(bodyParser.json());
